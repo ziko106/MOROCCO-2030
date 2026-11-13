@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morocco 2030 Insider Book</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+<div class="line"></div>
+<div class="top"><span class="badge">★ MOROCCO 2030 ROYAL EDITION</span><button type="button" class="pdf" onclick="window.print()">📥 Save PDF</button></div>
+<h1>The Morocco 2030 Insider Book</h1>
+<p class="lead">Mega-Stadiums, Al Boraq Rail, Fair Prices, Darija Cards, Sahara, Invest & Entry Guide.</p>
+<div class="nav">
+<button type="button" class="nb active" id="n-cities" onclick="go('cities')">🏟️ 2030 Cities</button>
+<button type="button" class="nb" id="n-rail" onclick="go('rail')">🚄 Rail & Budget</button>
+<button type="button" class="nb" id="n-scam" onclick="go('scam')">🛡️ Fair Prices</button>
+<button type="button" class="nb" id="n-darija" onclick="go('darija')">🗣️ Darija Cards</button>
+<button type="button" class="nb" id="n-trips" onclick="go('trips')">🎒 72h Trips</button>
+<button type="button" class="nb" id="n-sos" onclick="go('sos')">🆘 SOS & Apps</button>
+<button type="button" class="nb" id="n-culture" onclick="go('culture')">🇲🇦 Culture & Food</button>
+<button type="button" class="nb" id="n-sahara" onclick="go('sahara')">🏜️ Sahara</button>
+<button type="button" class="nb" id="n-invest" onclick="go('invest')">💼 Invest 2030</button>
+<button type="button" class="nb full" id="n-visa" onclick="go('visa')">✈️ Visa, Customs & Official FIFA Entry Rules</button>
+</div>
+<div id="sec-cities" class="sec">
+<label>Select 2030 Host City & Mega-Stadium:</label>
+<select id="csel" onchange="rcity()">
+<option value="casa">Casablanca / Benslimane — Grand Stade Hassan II (115,000)</option>
+<option value="rabat">Rabat — Prince Moulay Abdellah Stadium (68,700)</option>
+<option value="tanger">Tangier — Ibn Batouta Stadium (68,000)</option>
+<option value="kech">Marrakech — Grand Stade de Marrakech (45,860)</option>
+<option value="fes">Fez — Complexe Sportif de Fès (55,800)</option>
+<option value="agadir">Agadir — Stade Adrar (46,000)</option>
+</select>
+<div class="card" id="ccard"></div>
+</div>
+<div id="sec-rail" class="sec" style="display:none">
+<div class="card"><h3>🚄 Al Boraq 2030 High-Speed Network</h3><p class="sm">Extended 320 km/h bullet train linking <strong>Tangier • Rabat • Casablanca • Marrakech</strong>, plus rapid shuttles to Benslimane and Agadir.</p><div class="row"><span>Tangier ➔ Casablanca:</span><strong>2h 10m (~$25–$38)</strong></div><div class="row"><span>Casablanca ➔ Marrakech:</span><strong>1h 30m (~$20–$32)</strong></div><div class="row" style="border:none"><span>Rabat ➔ Benslimane Stadium:</span><strong>35m RER Express (~$6)</strong></div></div>
+<div class="card"><h3>💱 Live Fan Currency Converter</h3><label>Enter Amount in Moroccan Dirhams (MAD):</label><input type="number" id="mad" value="500" oninput="cmad()" /><div class="cg"><div class="cb"><span>🇺🇸 USD</span><strong id="vu">$50.0</strong></div><div class="cb"><span>🇪🇺 EUR</span><strong id="ve">€46.0</strong></div><div class="cb"><span>🇬🇧 GBP</span><strong id="vg">£39.0</strong></div></div></div>
+</div>
+<div id="sec-scam" class="sec" style="display:none">
+<div class="card"><h3>🛡️ Local Fair-Price Shield (No Tourist Tax)</h3><div class="row"><span>🚕 Petit Taxi (City Ride):</span><strong>15–35 MAD ($1.5–$3.5)</strong></div><div class="row"><span>✈️ Casa Airport ➔ City (Train):</span><strong>55 MAD ($5.50)</strong></div><div class="row"><span>✈️ Casa Airport ➔ City (Taxi):</span><strong>300 MAD Fixed ($30)</strong></div><div class="row"><span>🥘 Authentic Local Tagine:</span><strong>45–80 MAD ($4.5–$8)</strong></div><div class="row"><span>📶 5G Tourist eSIM (20GB):</span><strong>100–150 MAD ($10–$15)</strong></div><div class="row" style="border:none"><span>☕ Mint Tea / Espresso:</span><strong>10–18 MAD ($1–$1.8)</strong></div></div>
+<div class="tip">💡 <strong>Golden Rule:</strong> Always ask the Petit Taxi driver to turn on the meter ("Compteur, s'il vous plaît") before moving.</div>
+</div>
+<div id="sec-darija" class="sec" style="display:none">
+<p class="sm">Tap a situation to display a full-screen card to show drivers or staff:</p>
+<div class="dg"><button type="button" class="db" onclick="scard('taxi')">🚕 Turn On Meter</button><button type="button" class="db" onclick="scard('stad')">🏟️ To the Stadium</button><button type="button" class="db" onclick="scard('price')">💰 Too Expensive</button><button type="button" class="db" onclick="scard('food')">🥜 Food Allergy</button></div>
+<div class="fc"><div class="fe" id="fe">Please turn on the taxi meter.</div><div class="fa" id="fa">عافاك خدام الكونتور</div><div class="fp" id="fp">"Afak khaddem l-compteur"</div></div>
+</div>
+<div id="sec-trips" class="sec" style="display:none">
+<div class="card"><h3>🏜️ Trip 1: Marrakech ➔ Agafay & Essaouira (72h)</h3><p class="sm"><strong>Day 1:</strong> Sunset camel ride & Berber dinner in Agafay Stone Desert (40 min from Marrakech).</p><p class="sm" style="margin:0"><strong>Day 2–3:</strong> CTM/Supratours bus to Essaouira (2h30) for Atlantic seafood & historic ramparts.</p></div>
+<div class="card"><h3>🔵 Trip 2: Tangier ➔ Chefchaouen & Asilah (72h)</h3><p class="sm"><strong>Day 1–2:</strong> Bus or Grand Taxi to Chefchaouen (2h) to explore the famous Blue Pearl Medina.</p><p class="sm" style="margin:0"><strong>Day 3:</strong> Stop at Asilah (45 min south) for whitewashed art walls and grilled fish.</p></div>
+<div class="card" style="margin-bottom:0"><h3>🏄 Trip 3: Agadir ➔ Taghazout & Paradise Valley</h3><p class="sm" style="margin:0">25 min north of Agadir: world-class surf villages (Taghazout & Imsouane) and natural palm pools.</p></div>
+</div>
+<div id="sec-sos" class="sec" style="display:none">
+<div class="card"><h3>📱 Must-Have Apps in Morocco</h3><div class="row"><span>🚄 ONCF Voyages:</span><strong>Official High-Speed Train Tickets</strong></div><div class="row"><span>🚕 Careem / InDrive:</span><strong>Safe Ride-Hailing in Cities</strong></div><div class="row"><span>🍔 Glovo:</span><strong>Food & Pharmacy Delivery</strong></div><div class="row" style="border:none"><span>📶 Airalo / Orange MA:</span><strong>Instant 5G Tourist eSIM</strong></div></div>
+<div class="card" style="margin-bottom:0"><h3>🆘 Emergency Numbers (24/7 Free)</h3><div class="row"><span>🚓 Urban Police:</span><strong style="color:#F87171">19</strong></div><div class="row"><span>🚓 Royal Gendarmerie (Highways):</span><strong style="color:#F87171">177</strong></div><div class="row"><span>🚑 Ambulance & Fire:</span><strong style="color:#F87171">15</strong></div><div class="row" style="border:none"><span>🛡️ Tourist Police:</span><strong>All 6 Host Cities</strong></div></div>
+</div>
+<div id="sec-culture" class="sec" style="display:none">
+<div class="card"><h3>🥘 Iconic Moroccan Gastronomy</h3><p class="sm"><strong>• Royal Friday Couscous:</strong> Steamed semolina with 7 vegetables and tender meat every Friday.</p><p class="sm"><strong>• Pastilla:</strong> Crispy pastry filled with spiced chicken or seafood, almonds, and cinnamon.</p><p class="sm"><strong>• Rfissa & Tanjia:</strong> Shredded msemen with lentils (Rfissa) or slow-cooked clay-pot beef (Tanjia).</p><p class="sm" style="margin:0"><strong>• Mint Tea:</strong> Poured from high above—always accept with your right hand.</p></div>
+<div class="card" style="margin-bottom:0"><h3>🕌 Traditions & Etiquette</h3><p class="sm"><strong>• Hospitality:</strong> Say <em>"Salam Alaykum"</em> with a hand over your heart.</p><p class="sm"><strong>• Mosques:</strong> Non-Muslims can visit the stunning <strong>Hassan II Mosque</strong> in Casablanca via guided tours.</p><p class="sm" style="margin:0"><strong>• Souk Bargaining:</strong> Friendly ritual—smile and start around 50% of the first quote.</p></div>
+</div>
+<div id="sec-sahara" class="sec" style="display:none">
+<div class="card"><h3>🏜️ The Moroccan Sahara: Heritage & Global Recognition</h3><p class="sm">Morocco's Southern Provinces (<strong>Laâyoune</strong> and <strong>Dakhla</strong>) are an integral part of the Kingdom's history and identity.</p><p class="sm" style="margin:0"><strong>🌍 International Backing:</strong> Following the <strong>December 2020 US Proclamation</strong> recognizing Moroccan sovereignty, over 30 nations—including Spain, France, and Arab & African allies—back Morocco's Autonomy Plan with consulates in Laâyoune and Dakhla.</p></div>
+<div class="card" style="margin-bottom:0"><h3>🌊 Southern Jewels & 2030 Mega-Projects</h3><p class="sm"><strong>• Dakhla Lagoon:</strong> World kitesurfing capital where Sahara dunes meet turquoise Atlantic waters.</p><p class="sm"><strong>• Dakhla Atlantic Port & Tiznit-Dakhla Expressway:</strong> $1.2B mega-port and 1,055 km highway linking the Southern Provinces.</p><div class="tip">✈️ <strong>Flight Tip:</strong> Daily 2h flights from Casablanca (CMN) to Dakhla (VIL) & Laâyoune (EUN).</div></div>
+</div>
+<div id="sec-invest" class="sec" style="display:none">
+<div class="card"><h3>💼 Why Invest in Morocco Ahead of 2030?</h3><p class="sm">Over <strong>$15B+ in stadium, rail, airport, and hotel investments</strong> are driving rapid economic growth.</p><div class="row"><span>🏢 Real Estate & Rentals:</span><strong>Casablanca, Rabat, Tangier, Marrakech</strong></div><div class="row"><span>☀️ Green Energy & Hydrogen:</span><strong>Dakhla & Ouarzazate Hubs</strong></div><div class="row"><span>💻 Tech & Nearshoring:</span><strong>Casablanca Finance City (CFC)</strong></div><div class="row" style="border:none"><span>🏨 Boutique Riads & Resorts:</span><strong>High Year-Round Occupancy</strong></div></div>
