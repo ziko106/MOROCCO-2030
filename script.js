@@ -12,12 +12,12 @@ stad:{e:"Please take me to the Official Stadium Gate.",a:"عافاك ديني ل
 price:{e:"No thank you, that is too expensive.",a:"لا شكرا، غالي بزاف عليا",p:'"La shukran, ghali bzzaf aliya"'},
 food:{e:"I have a severe peanut/nut allergy.",a:"عندي حساسية خطيرة من الكاوكاو والمكسرات",p:'"Andi hassasiya khatira men l-kawkaw"'}
 };
+var curAr="عافاك خدام الكونتور";
 function go(n){
-var a=['cities','rail','scam','darija','trips','sos','culture','sahara','invest','visa'];
+var a=['cities','rail','scam','darija','trips','sos','culture','sahara','invest','visa','iberia','voice','weather','spots','planner','souk','medcard','matchday'];
 for(var i=0;i<a.length;i++){
 document.getElementById('sec-'+a[i]).style.display=a[i]===n?'block':'none';
-var b=document.getElementById('n-'+a[i]);
-b.className=(a[i]==='visa')?(a[i]===n?'nb full active':'nb full'):(a[i]===n?'nb active':'nb');
+document.getElementById('n-'+a[i]).className=a[i]===n?'nb active':'nb';
 }
 }
 function rcity(){
@@ -31,10 +31,35 @@ document.getElementById('ve').innerText='€'+(m*0.092).toFixed(1);
 document.getElementById('vg').innerText='£'+(m*0.078).toFixed(1);
 }
 function scard(k){
-var d=D[k];
+var d=D[k];curAr=d.a;
 document.getElementById('fe').innerText=d.e;
 document.getElementById('fa').innerText=d.a;
 document.getElementById('fp').innerText=d.p;
 }
-rcity();
-cmad();
+function speak(txt){
+if('speechSynthesis' in window){
+var u=new SpeechSynthesisUtterance(txt);u.lang='ar-MA';window.speechSynthesis.speak(u);
+}
+}
+function buildTrip(){
+var d=parseInt(document.getElementById('p-days').value)||5;
+var r=parseInt(document.getElementById('p-tier').value)||85;
+var tot=d*r;
+document.getElementById('p-res').innerHTML='<h3>📅 '+d+'-Day Custom 2030 Budget</h3><div class="row"><span>🏨 Hotels & Rail/Day:</span><strong>$'+r+' / day</strong></div><div class="row" style="border:none"><span>💰 Estimated Total Trip:</span><strong>$'+tot+' USD (~'+(tot*10)+' MAD)</strong></div><div class="tip">💡 Book ONCF trains 14 days ahead & flights 3 months prior.</div>';
+}
+function calcSouk(){
+var q=parseFloat(document.getElementById('s-quote').value)||0;
+var fair=Math.round(q*0.45);
+var start=Math.round(q*0.30);
+document.getElementById('s-res').innerHTML='<div class="row"><span>🎯 Target Fair Local Price:</span><strong>'+fair+' MAD ($'+(fair*0.1).toFixed(1)+')</strong></div><div class="row" style="border:none"><span>🤝 Your Opening Counter-Offer:</span><strong>'+start+' MAD ($'+(start*0.1).toFixed(1)+')</strong></div><div class="tip">🗣️ Show seller: <strong>"عطيني آخر ثمن عافاك"</strong> (Give me your final price please)</div>';
+}
+function buildMed(){
+var list=[];
+if(document.getElementById('m-nut').checked)list.push('الفول السوداني والمكسرات (Peanuts/Nuts)');
+if(document.getElementById('m-glu').checked)list.push('الغلوتين والقمح (Gluten/Wheat)');
+if(document.getElementById('m-sea').checked)list.push('فواكه البحر (Shellfish/Seafood)');
+if(document.getElementById('m-dia').checked)list.push('مرض السكري (Diabetes)');
+var txt=list.length?list.join(' • '):'لا توجد حساسية (No Allergies Selected)';
+document.getElementById('m-card').innerHTML='<div class="fe">MEDICAL ALERT / تنبيه طبي</div><div class="fa" style="font-size:18px">'+txt+'</div><div class="fp">Call Emergency: 15 (Ambulance) • 19 (Police)</div>';
+}
+rcity();cmad();buildTrip();calcSouk();buildMed();
