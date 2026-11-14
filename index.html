@@ -4,18 +4,91 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Morocco 2030 Insider Book</title>
-<link rel="stylesheet" href="style.css">
+<style>
+body{background:#140507;color:#FDF8F2;font-family:sans-serif;margin:0;padding:16px;display:flex;justify-content:center}
+.app{width:100%;max-width:560px;background:#1F080C;border:2px solid #D97706;border-radius:20px;padding:22px;box-sizing:border-box}
+.line{height:5px;background:repeating-linear-gradient(90deg,#C1272D 0,#C1272D 16px,#D97706 16px,#D97706 22px,#006233 22px,#006233 38px);border-radius:4px;margin-bottom:14px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.badge{background:#C1272D;border:1px solid #F59E0B;color:#FEF3C7;font-size:10px;font-weight:bold;padding:5px 12px;border-radius:20px}
+.pdf{background:#006233;color:#ECFDF5;border:1px solid #34D399;padding:6px 12px;border-radius:10px;font-size:11px;font-weight:bold;cursor:pointer}
+h1{margin:0 0 6px 0;font-size:21px;color:#FDE68A}
+.lead{color:#E7D5C5;font-size:13px;margin:0 0 16px 0}
+.nav{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:#120406;border:1px solid #78350F;padding:6px;border-radius:12px;margin-bottom:18px}
+.nb{padding:9px 4px;background:#270A0F;color:#F3E8D8;border:1px solid #5C1922;border-radius:8px;font-size:11px;font-weight:bold;cursor:pointer}
+.nb.full{grid-column:span 3;background:#006233;color:#FEF3C7;border:1px solid #F59E0B}
+.nb.active{background:#C1272D;color:#FDE68A;border:1.5px solid #FBBF24}
+label{display:block;font-size:12px;color:#FCD34D;font-weight:bold;margin-bottom:6px}
+select,input{width:100%;padding:12px;background:#2A0B10;border:1px solid #B45309;border-radius:10px;color:#fff;font-size:13px;box-sizing:border-box;margin-bottom:14px;outline:none}
+select{color:#6EE7B7;font-weight:bold}
+.card{background:#24090E;border:1px solid #92400E;border-left:4px solid #006233;border-radius:12px;padding:15px;margin-bottom:14px}
+.card h3{margin:0 0 8px 0;font-size:15px;color:#FBBF24}
+.sm{font-size:12px;color:#F5EBE0;line-height:1.5;margin:0 0 8px 0}
+.row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #4A141C;font-size:12px}
+.row strong{color:#6EE7B7}
+.cg{display:flex;gap:8px}
+.cb{flex:1;background:#140507;border:1px solid #B45309;border-radius:10px;padding:10px;text-align:center}
+.cb span{display:block;font-size:11px;color:#FDE68A;margin-bottom:4px}
+.cb strong{font-size:16px;color:#34D399}
+.tip{background:#006233;border:1px solid #F59E0B;color:#FEF3C7;padding:11px;border-radius:10px;font-size:12px;margin-top:8px}
+.dg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.db{padding:10px;background:#2A0B10;color:#FDE68A;border:1px solid #B45309;border-radius:10px;font-size:12px;font-weight:bold;cursor:pointer}
+.fc{background:#006233;border:2px solid #FBBF24;border-radius:16px;padding:22px 14px;text-align:center}
+.fe{font-size:13px;color:#D1FAE5;margin-bottom:8px}
+.fa{font-size:26px;font-weight:bold;color:#fff;margin-bottom:6px}
+.fp{font-size:14px;color:#FDE68A;font-style:italic}
+@media print{body{background:#fff;color:#000}.app{border:none;background:#fff}.nav,.pdf,.line{display:none}.sec{display:block!important}}
+</style>
 </head>
 <body>
 <div class="app">
 <div class="line"></div>
-<div class="top"><span class="badge">★ MOROCCO 2030 COMPLETE 18-IN-1</span><button type="button" class="pdf" onclick="window.print()">📥 Save PDF</button></div>
+<div class="top"><span class="badge">★ MOROCCO 2030 ROYAL EDITION</span><button type="button" class="pdf" onclick="window.print()">📥 Save PDF</button></div>
 <h1>The Morocco 2030 Insider Book</h1>
-<p class="lead">18 Interactive Guides, Calculators, Darija Audio Cards, Iberia Crossing & Matchday Tools.</p>
-<div class="nav" id="nav-bar"></div>
-<div id="main-view"></div>
-<div class="line" style="margin-top:14px;margin-bottom:0"></div>
+<p class="lead">Mega-Stadiums, Al Boraq Rail, Fair Prices, Darija Cards, Sahara, Invest & Entry Guide.</p>
+<div class="nav">
+<button type="button" class="nb active" id="n-cities" onclick="go('cities')">🏟️ 2030 Cities</button>
+<button type="button" class="nb" id="n-rail" onclick="go('rail')">🚄 Rail & Budget</button>
+<button type="button" class="nb" id="n-scam" onclick="go('scam')">🛡️ Fair Prices</button>
+<button type="button" class="nb" id="n-darija" onclick="go('darija')">🗣️ Darija Cards</button>
+<button type="button" class="nb" id="n-trips" onclick="go('trips')">🎒 72h Trips</button>
+<button type="button" class="nb" id="n-sos" onclick="go('sos')">🆘 SOS & Apps</button>
+<button type="button" class="nb" id="n-culture" onclick="go('culture')">🇲🇦 Culture & Food</button>
+<button type="button" class="nb" id="n-sahara" onclick="go('sahara')">🏜️ Sahara</button>
+<button type="button" class="nb" id="n-invest" onclick="go('invest')">💼 Invest 2030</button>
+<button type="button" class="nb full" id="n-visa" onclick="go('visa')">✈️ Visa, Customs & Official FIFA Entry Rules</button>
 </div>
-<script src="app.js"></script>
-</body>
-</html>
+<div id="sec-cities" class="sec">
+<label>Select 2030 Host City & Mega-Stadium:</label>
+<select id="csel" onchange="rcity()">
+<option value="casa">Casablanca / Benslimane — Grand Stade Hassan II (115,000)</option>
+<option value="rabat">Rabat — Prince Moulay Abdellah Stadium (68,700)</option>
+<option value="tanger">Tangier — Ibn Batouta Stadium (68,000)</option>
+<option value="kech">Marrakech — Grand Stade de Marrakech (45,860)</option>
+<option value="fes">Fez — Complexe Sportif de Fès (55,800)</option>
+<option value="agadir">Agadir — Stade Adrar (46,000)</option>
+</select>
+<div class="card" id="ccard"></div>
+</div>
+<div id="sec-rail" class="sec" style="display:none">
+<div class="card"><h3>🚄 Al Boraq 2030 High-Speed Network</h3><p class="sm">Extended 320 km/h bullet train linking <strong>Tangier • Rabat • Casablanca • Marrakech</strong>, plus rapid shuttles to Benslimane and Agadir.</p><div class="row"><span>Tangier ➔ Casablanca:</span><strong>2h 10m (~$25–$38)</strong></div><div class="row"><span>Casablanca ➔ Marrakech:</span><strong>1h 30m (~$20–$32)</strong></div><div class="row" style="border:none"><span>Rabat ➔ Benslimane Stadium:</span><strong>35m RER Express (~$6)</strong></div></div>
+<div class="card"><h3>💱 Live Fan Currency Converter</h3><label>Enter Amount in Moroccan Dirhams (MAD):</label><input type="number" id="mad" value="500" oninput="cmad()" /><div class="cg"><div class="cb"><span>🇺🇸 USD</span><strong id="vu">$50.0</strong></div><div class="cb"><span>🇪🇺 EUR</span><strong id="ve">€46.0</strong></div><div class="cb"><span>🇬🇧 GBP</span><strong id="vg">£39.0</strong></div></div></div>
+</div>
+<div id="sec-scam" class="sec" style="display:none">
+<div class="card"><h3>🛡️ Local Fair-Price Shield (No Tourist Tax)</h3><div class="row"><span>🚕 Petit Taxi (City Ride):</span><strong>15–35 MAD ($1.5–$3.5)</strong></div><div class="row"><span>✈️ Casa Airport ➔ City (Train):</span><strong>55 MAD ($5.50)</strong></div><div class="row"><span>✈️ Casa Airport ➔ City (Taxi):</span><strong>300 MAD Fixed ($30)</strong></div><div class="row"><span>🥘 Authentic Local Tagine:</span><strong>45–80 MAD ($4.5–$8)</strong></div><div class="row"><span>📶 5G Tourist eSIM (20GB):</span><strong>100–150 MAD ($10–$15)</strong></div><div class="row" style="border:none"><span>☕ Mint Tea / Espresso:</span><strong>10–18 MAD ($1–$1.8)</strong></div></div>
+<div class="tip">💡 <strong>Golden Rule:</strong> Always ask the Petit Taxi driver to turn on the meter ("Compteur, s'il vous plaît") before moving.</div>
+</div>
+<div id="sec-darija" class="sec" style="display:none">
+<p class="sm">Tap a situation to display a full-screen card to show drivers or staff:</p>
+<div class="dg"><button type="button" class="db" onclick="scard('taxi')">🚕 Turn On Meter</button><button type="button" class="db" onclick="scard('stad')">🏟️ To the Stadium</button><button type="button" class="db" onclick="scard('price')">💰 Too Expensive</button><button type="button" class="db" onclick="scard('food')">🥜 Food Allergy</button></div>
+<div class="fc"><div class="fe" id="fe">Please turn on the taxi meter.</div><div class="fa" id="fa">عافاك خدام الكونتور</div><div class="fp" id="fp">"Afak khaddem l-compteur"</div></div>
+</div>
+<div id="sec-trips" class="sec" style="display:none">
+<div class="card"><h3>🏜️ Trip 1: Marrakech ➔ Agafay & Essaouira (72h)</h3><p class="sm"><strong>Day 1:</strong> Sunset camel ride & Berber dinner in Agafay Stone Desert (40 min from Marrakech).</p><p class="sm" style="margin:0"><strong>Day 2–3:</strong> CTM/Supratours bus to Essaouira (2h30) for Atlantic seafood & historic ramparts.</p></div>
+<div class="card"><h3>🔵 Trip 2: Tangier ➔ Chefchaouen & Asilah (72h)</h3><p class="sm"><strong>Day 1–2:</strong> Bus or Grand Taxi to Chefchaouen (2h) to explore the famous Blue Pearl Medina.</p><p class="sm" style="margin:0"><strong>Day 3:</strong> Stop at Asilah (45 min south) for whitewashed art walls and grilled fish.</p></div>
+<div class="card" style="margin-bottom:0"><h3>🏄 Trip 3: Agadir ➔ Taghazout & Paradise Valley</h3><p class="sm" style="margin:0">25 min north of Agadir: world-class surf villages (Taghazout & Imsouane) and natural palm pools.</p></div>
+</div>
+<div id="sec-sos" class="sec" style="display:none">
+<div class="card"><h3>📱 Must-Have Apps in Morocco</h3><div class="row"><span>🚄 ONCF Voyages:</span><strong>Official High-Speed Train Tickets</strong></div><div class="row"><span>🚕 Careem / InDrive:</span><strong>Safe Ride-Hailing in Cities</strong></div><div class="row"><span>🍔 Glovo:</span><strong>Food & Pharmacy Delivery</strong></div><div class="row" style="border:none"><span>📶 Airalo / Orange MA:</span><strong>Instant 5G Tourist eSIM</strong></div></div>
+<div class="card" style="margin-bottom:0"><h3>🆘 Emergency Numbers (24/7 Free)</h3><div class="row"><span>🚓 Urban Police:</span><strong style="color:#F87171">19</strong></div><div class="row"><span>🚓 Royal Gendarmerie (Highways):</span><strong style="color:#F87171">177</strong></div><div class="row"><span>🚑 Ambulance & Fire:</span><strong style="color:#F87171">15</strong></div><div class="row" style="border:none"><span>🛡️ Tourist Police:</span><strong>All 6 Host Cities</strong></div></div>
+</div>
+<div id="sec-culture" class="sec" style="display:none">
