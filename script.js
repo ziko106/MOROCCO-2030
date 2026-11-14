@@ -14,27 +14,30 @@ var D = {
   food: { e: "I have a severe peanut/nut allergy.", a: "عندي حساسية خطيرة من الكاوكاو والمكسرات", p: '"Andi hassasiya khatira men l-kawkaw"' }
 };
 
-var ids = ['cities', 'rail', 'scam', 'darija', 'trips', 'sos', 'culture', 'sahara', 'invest', 'visa'];
+var curAr = "عافاك خدام الكونتور";
+var ids = ['cities','rail','scam','darija','trips','sos','culture','sahara','invest','visa','iberia','voice','weather','spots','planner','souk','medcard','matchday'];
 
 function go(n) {
   ids.forEach(function(id) {
-    document.getElementById('sec-' + id).style.display = id === n ? 'block' : 'none';
-    var b = document.getElementById('n-' + id);
-    if (id === 'visa') {
-      b.className = id === n ? 'nb full active' : 'nb full';
-    } else {
-      b.className = id === n ? 'nb active' : 'nb';
-    }
+    var sec = document.getElementById('sec-' + id);
+    var btn = document.getElementById('n-' + id);
+    if (sec) sec.style.display = id === n ? 'block' : 'none';
+    if (btn) btn.className = id === n ? 'nb active' : 'nb';
   });
 }
 
 function rcity() {
-  var c = C[document.getElementById('csel').value];
-  document.getElementById('ccard').innerHTML = '<h3>' + c.t + '</h3><p class="sm"><strong>🏗️ 2030:</strong> ' + c.i + '</p><p class="sm"><strong>🏨 Stay:</strong> ' + c.s + '</p><p class="sm"><strong>🥘 Food:</strong> ' + c.f + '</p><div class="tip">💡 ' + c.h + '</div>';
+  var s = document.getElementById('csel');
+  var box = document.getElementById('ccard');
+  if (!s || !box) return;
+  var c = C[s.value];
+  box.innerHTML = '<h3>' + c.t + '</h3><p class="sm"><strong>🏗️ 2030:</strong> ' + c.i + '</p><p class="sm"><strong>🏨 Stay:</strong> ' + c.s + '</p><p class="sm"><strong>🥘 Food:</strong> ' + c.f + '</p><div class="tip">💡 ' + c.h + '</div>';
 }
 
 function cmad() {
-  var m = parseFloat(document.getElementById('mad').value) || 0;
+  var inp = document.getElementById('mad');
+  if (!inp) return;
+  var m = parseFloat(inp.value) || 0;
   document.getElementById('vu').innerText = '$' + (m * 0.10).toFixed(1);
   document.getElementById('ve').innerText = '€' + (m * 0.092).toFixed(1);
   document.getElementById('vg').innerText = '£' + (m * 0.078).toFixed(1);
@@ -42,10 +45,51 @@ function cmad() {
 
 function scard(k) {
   var d = D[k];
+  curAr = d.a;
   document.getElementById('fe').innerText = d.e;
   document.getElementById('fa').innerText = d.a;
   document.getElementById('fp').innerText = d.p;
 }
 
-rcity();
-cmad();
+function speak(txt) {
+  if ('speechSynthesis' in window) {
+    var u = new SpeechSynthesisUtterance(txt);
+    u.lang = 'ar-MA';
+    window.speechSynthesis.speak(u);
+  }
+}
+
+function buildTrip() {
+  var dEl = document.getElementById('p-days');
+  var rEl = document.getElementById('p-tier');
+  var res = document.getElementById('p-res');
+  if (!rEl || !res) return;
+  var d = dEl ? (parseInt(dEl.value) || 7) : 7;
+  var r = parseInt(rEl.value) || 130;
+  var tot = d * r;
+  res.innerHTML = '<h3>📅 ' + d + '-Day Custom 2030 Budget</h3><div class="row"><span>🏨 Hotels & Rail/Day:</span><strong>$' + r + ' / day</strong></div><div class="row" style="border:none"><span>💰 Estimated Total Trip:</span><strong>$' + tot + ' USD (~' + (tot * 10) + ' MAD)</strong></div><div class="tip">💡 Book ONCF trains 14 days ahead & flights 3 months prior.</div>';
+}
+
+function calcSouk() {
+  var qEl = document.getElementById('s-quote');
+  var res = document.getElementById('s-res');
+  if (!qEl || !res) return;
+  var q = parseFloat(qEl.value) || 0;
+  var fair = Math.round(q * 0.45);
+  var start = Math.round(q * 0.30);
+  res.innerHTML = '<div class="row"><span>🎯 Target Fair Local Price:</span><strong>' + fair + ' MAD ($' + (fair * 0.1).toFixed(1) + ')</strong></div><div class="row" style="border:none"><span>🤝 Your Opening Counter-Offer:</span><strong>' + start + ' MAD ($' + (start * 0.1).toFixed(1) + ')</strong></div><div class="tip">🗣️ Show seller: <strong>"عطيني آخر ثمن عافاك"</strong> (Give me your final price please)</div>';
+}
+
+function buildMed() {
+  var card = document.getElementById('m-card');
+  if (!card) return;
+  var list = [];
+  if (document.getElementById('m-nut').checked) list.push('الفول السوداني والمكسرات (Peanuts/Nuts)');
+  if (document.getElementById('m-glu').checked) list.push('الغلوتين والقمح (Gluten/Wheat)');
+  if (document.getElementById('m-sea').checked) list.push('فواكه البحر (Shellfish/Seafood)');
+  if (document.getElementById('m-dia').checked) list.push('مرض السكري (Diabetes)');
+  var txt = list.length ? list.join(' • ') : 'لا توجد حساسية (No Allergies Selected)';
+  card.innerHTML = '<div class="fe">MEDICAL ALERT / تنبيه طبي</div><div class="fa" style="font-size:18px">' + txt + '</div><div class="fp">Call Emergency: 15 (Ambulance) • 19 (Police)</div>';
+}
+
+rcity(); cmad(); buildTrip(); calcSouk(); buildMed();
