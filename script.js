@@ -1,3 +1,11 @@
+var tabs=[
+['cities','🏟️ 1. 2030 Cities'],['rail','🚄 2. Rail & FX'],['scam','🛡️ 3. Fair Prices'],
+['darija','🗣️ 4. Darija Cards'],['trips','🎒 5. 72h Trips'],['sos','🆘 6. SOS & Apps'],
+['culture','🇲🇦 7. Culture'],['sahara','🏜️ 8. Sahara'],['invest','💼 9. Invest 2030'],
+['visa','✈️ 10. Visa/FIFA'],['iberia','⛴️ 11. Spain/PT'],['voice','🔊 12. Voice Pack'],
+['weather','☀️ 13. Packing'],['spots','📍 14. Local Gems'],['planner','🧮 15. Trip Calc'],
+['souk','🤝 16. Haggler'],['medcard','🩺 17. Med Card'],['matchday','⚽ 18. Matchday']
+];
 var C={
 casa:{t:"🏟️ Grand Stade Hassan II (115,000 Seats)",i:"World's largest stadium in Benslimane (38 km north of Casablanca), inspired by Moroccan Moussem tents.",s:"Stay: Maarif, Racine, Casa Marina or Mohammedia (15 min away).",f:"Eat: Marché Central seafood, Maâkouda & Ain Diab tea.",h:"Hack: Take the new RER Express train from Casa-Port or Rabat directly to the stadium."},
 rabat:{t:"🏟️ Prince Moulay Abdellah Stadium (68,700 Seats)",i:"Brand-new futuristic arena in Morocco's capital connected to high-speed rail and tramway.",s:"Stay: Agdal (train station) or Hassan / Kasbah des Oudayas.",f:"Eat: Traditional Rfissa, Pastilla & Bouregreg Marina fish.",h:"Hack: Only 45 min from Casablanca by Al Boraq train."},
@@ -13,48 +21,14 @@ price:{e:"No thank you, that is too expensive.",a:"لا شكرا، غالي بز
 food:{e:"I have a severe peanut/nut allergy.",a:"عندي حساسية خطيرة من الكاوكاو والمكسرات",p:'"Andi hassasiya khatira men l-kawkaw"'}
 };
 var curAr="عافاك خدام الكونتور";
-function go(n){
-var a=['cities','rail','scam','darija','trips','sos','culture','sahara','invest','visa','iberia','voice','weather','spots','planner','souk','medcard','matchday'];
-for(var i=0;i<a.length;i++){
-var el=document.getElementById('sec-'+a[i]);
-var bt=document.getElementById('n-'+a[i]);
-if(el)el.style.display=a[i]===n?'block':'none';
-if(bt)bt.className=a[i]===n?'nb active':'nb';
-}
-}
-function rcity(){
-var s=document.getElementById('csel');var box=document.getElementById('ccard');
-if(!s||!box)return;var c=C[s.value];
-box.innerHTML='<h3>'+c.t+'</h3><p class="sm"><strong>🏗️ 2030:</strong> '+c.i+'</p><p class="sm"><strong>🏨 Stay:</strong> '+c.s+'</p><p class="sm"><strong>🥘 Food:</strong> '+c.f+'</p><div class="tip">💡 '+c.h+'</div>';
-}
-function cmad(){
-var inp=document.getElementById('mad');if(!inp)return;var m=parseFloat(inp.value)||0;
-document.getElementById('vu').innerText='$'+(m*0.10).toFixed(1);
-document.getElementById('ve').innerText='€'+(m*0.092).toFixed(1);
-document.getElementById('vg').innerText='£'+(m*0.078).toFixed(1);
-}
-function scard(k){
-var d=D[k];curAr=d.a;
-document.getElementById('fe').innerText=d.e;document.getElementById('fa').innerText=d.a;document.getElementById('fp').innerText=d.p;
-}
-function speak(txt){if('speechSynthesis' in window){var u=new SpeechSynthesisUtterance(txt);u.lang='ar-MA';window.speechSynthesis.speak(u);}}
-function buildTrip(){
-var dEl=document.getElementById('p-days');var rEl=document.getElementById('p-tier');var res=document.getElementById('p-res');if(!rEl||!res)return;
-var d=dEl?(parseInt(dEl.value)||7):7;var r=parseInt(rEl.value)||130;var tot=d*r;
-res.innerHTML='<h3>📅 '+d+'-Day Custom 2030 Budget</h3><div class="row"><span>🏨 Hotels & Rail/Day:</span><strong>$'+r+' / day</strong></div><div class="row" style="border:none"><span>💰 Estimated Total Trip:</span><strong>$'+tot+' USD (~'+(tot*10)+' MAD)</strong></div><div class="tip">💡 Book ONCF trains 14 days ahead & flights 3 months prior.</div>';
-}
-function calcSouk(){
-var qEl=document.getElementById('s-quote');var res=document.getElementById('s-res');if(!qEl||!res)return;
-var q=parseFloat(qEl.value)||0;var fair=Math.round(q*0.45);var start=Math.round(q*0.30);
-res.innerHTML='<div class="row"><span>🎯 Target Fair Local Price:</span><strong>'+fair+' MAD ($'+(fair*0.1).toFixed(1)+')</strong></div><div class="row" style="border:none"><span>🤝 Your Opening Counter-Offer:</span><strong>'+start+' MAD ($'+(start*0.1).toFixed(1)+')</strong></div><div class="tip">🗣️ Show seller: <strong>"عطيني آخر ثمن عافاك"</strong> (Give me your final price please)</div>';
-}
-function buildMed(){
-var card=document.getElementById('m-card');if(!card)return;var list=[];
-if(document.getElementById('m-nut').checked)list.push('الفول السوداني والمكسرات (Peanuts/Nuts)');
-if(document.getElementById('m-glu').checked)list.push('الغلوتين والقمح (Gluten/Wheat)');
-if(document.getElementById('m-sea').checked)list.push('فواكه البحر (Shellfish/Seafood)');
-if(document.getElementById('m-dia').checked)list.push('مرض السكري (Diabetes)');
-var txt=list.length?list.join(' • '):'لا توجد حساسية (No Allergies Selected)';
-card.innerHTML='<div class="fe">MEDICAL ALERT / تنبيه طبي</div><div class="fa" style="font-size:18px">'+txt+'</div><div class="fp">Call Emergency: 15 (Ambulance) • 19 (Police)</div>';
-}
-rcity();cmad();buildTrip();calcSouk();buildMed();
+var S={
+cities:'<label>Select 2030 Host City & Mega-Stadium:</label><select id="csel" onchange="rcity()"><option value="casa">Casablanca / Benslimane — Grand Stade Hassan II (115,000)</option><option value="rabat">Rabat — Prince Moulay Abdellah Stadium (68,700)</option><option value="tanger">Tangier — Ibn Batouta Stadium (68,000)</option><option value="kech">Marrakech — Grand Stade de Marrakech (45,860)</option><option value="fes">Fez — Complexe Sportif de Fès (55,800)</option><option value="agadir">Agadir — Stade Adrar (46,000)</option></select><div class="card" id="ccard"></div>',
+rail:'<div class="card"><h3>🚄 Al Boraq 2030 High-Speed Network</h3><p class="sm">Extended 320 km/h bullet train linking <strong>Tangier • Rabat • Casablanca • Marrakech</strong>, plus rapid shuttles to Benslimane and Agadir.</p><div class="row"><span>Tangier ➔ Casablanca:</span><strong>2h 10m (~$25–$38)</strong></div><div class="row"><span>Casablanca ➔ Marrakech:</span><strong>1h 30m (~$20–$32)</strong></div><div class="row" style="border:none"><span>Rabat ➔ Benslimane Stadium:</span><strong>35m RER Express (~$6)</strong></div></div><div class="card"><h3>💱 Live Fan Currency Converter</h3><label>Enter Amount in Moroccan Dirhams (MAD):</label><input type="number" id="mad" value="500" oninput="cmad()" /><div class="cg"><div class="cb"><span>🇺🇸 USD</span><strong id="vu">$50.0</strong></div><div class="cb"><span>🇪🇺 EUR</span><strong id="ve">€46.0</strong></div><div class="cb"><span>🇬🇧 GBP</span><strong id="vg">£39.0</strong></div></div></div>',
+scam:'<div class="card"><h3>🛡️ Local Fair-Price Shield</h3><div class="row"><span>🚕 Petit Taxi (City):</span><strong>15–35 MAD ($1.5–$3.5)</strong></div><div class="row"><span>✈️ Casa Airport Train:</span><strong>55 MAD ($5.50)</strong></div><div class="row"><span>✈️ Casa Airport Taxi:</span><strong>300 MAD Fixed ($30)</strong></div><div class="row"><span>🥘 Local Tagine:</span><strong>45–80 MAD ($4.5–$8)</strong></div><div class="row" style="border:none"><span>📶 5G eSIM (20GB):</span><strong>100–150 MAD ($10–$15)</strong></div></div><div class="tip">💡 Always ask the Petit Taxi driver to turn on the meter ("Compteur, s\'il vous plaît") before moving.</div>',
+darija:'<div class="dg"><button type="button" class="db" onclick="scard(\'taxi\')">🚕 Turn On Meter</button><button type="button" class="db" onclick="scard(\'stad\')">🏟️ To Stadium</button><button type="button" class="db" onclick="scard(\'price\')">💰 Too Expensive</button><button type="button" class="db" onclick="scard(\'food\')">🥜 Food Allergy</button></div><div class="fc"><div class="fe" id="fe">Please turn on the taxi meter.</div><div class="fa" id="fa">عافاك خدام الكونتور</div><div class="fp" id="fp">"Afak khaddem l-compteur"</div><button type="button" class="pdf" onclick="speak(curAr)">🔊 Listen Pronunciation</button></div>',
+trips:'<div class="card"><h3>🏜️ Marrakech ➔ Agafay & Essaouira (72h)</h3><p class="sm">Sunset camel dinner in Agafay Stone Desert (40 min) + CTM bus to Essaouira coastal medina (2h30).</p></div><div class="card"><h3>🔵 Tangier ➔ Chefchaouen & Asilah (72h)</h3><p class="sm">2h to the Blue Pearl Medina of Chefchaouen + 45 min stop in Asilah art town.</p></div><div class="card" style="margin-bottom:0"><h3>🏄 Agadir ➔ Taghazout & Paradise Valley</h3><p class="sm" style="margin:0">25 min north of Agadir: world-famous surf villages & palm canyon pools.</p></div>',
+sos:'<div class="card"><h3>📱 Essential Morocco Apps</h3><div class="row"><span>🚄 ONCF Voyages:</span><strong>Official Train Tickets</strong></div><div class="row"><span>🚕 Careem / InDrive:</span><strong>Safe City Ride-Hailing</strong></div><div class="row" style="border:none"><span>🍔 Glovo:</span><strong>Food & Pharmacy Delivery</strong></div></div><div class="card" style="margin-bottom:0"><h3>🆘 Emergency Numbers (24/7)</h3><div class="row"><span>🚓 Urban Police:</span><strong style="color:#F87171">19</strong></div><div class="row"><span>🚓 Gendarmerie (Highways):</span><strong style="color:#F87171">177</strong></div><div class="row" style="border:none"><span>🚑 Ambulance & Fire:</span><strong style="color:#F87171">15</strong></div></div>',
+culture:'<div class="card"><h3>🥘 Iconic Moroccan Food</h3><p class="sm"><strong>Royal Friday Couscous • Sweet/Savory Pastilla • Rfissa • Tanjia Marrakchia • Mint Tea</strong> (always accept with your right hand).</p></div><div class="card" style="margin-bottom:0"><h3>🕌 Hospitality & Etiquette</h3><p class="sm" style="margin:0">Greet with <em>"Salam Alaykum"</em>. Non-Muslims can tour the magnificent <strong>Hassan II Mosque</strong> in Casablanca.</p></div>',
+sahara:'<div class="card"><h3>🏜️ Moroccan Sahara & Global Recognition</h3><p class="sm">Morocco\'s Southern Provinces (<strong>Laâyoune & Dakhla</strong>) enjoy growing global recognition following the <strong>December 2020 US Proclamation</strong> and support from over 30 nations with consulates on the ground.</p></div><div class="card" style="margin-bottom:0"><h3>🌊 Dakhla Lagoon & Southern Mega-Projects</h3><p class="sm" style="margin:0">World kitesurfing capital, $1.2B Dakhla Atlantic Port, 1,055 km Tiznit-Dakhla Expressway & 2h daily flights from Casablanca.</p></div>',
+invest:'<div class="card"><h3>💼 Invest in Morocco 2030 ($15B+ Boom)</h3><div class="row"><span>🏢 Real Estate & Rentals:</span><strong>Casa, Rabat, Tangier, Marrakech</strong></div><div class="row"><span>☀️ Green Hydrogen & Solar:</span><strong>Dakhla & Ouarzazate</strong></div><div class="row" style="border:none"><span>💻 Finance & Tech:</span><strong>Casablanca Finance City (CFC)</strong></div></div><div class="card" style="margin-bottom:0"><h3>📜 Investment Charter Incentives</h3><p class="sm" style="margin:0">Up to 30% grants, full profit repatriation & 5-year tax exemptions in key zones. Official portal: <em>morocconow.com</em>.</p></div>',
+visa:'<div class="card"><h3>🛂 Visa-Free Entry & e-Visa</h3><p class="sm"><strong>90-Day Visa-Free:</strong> USA, UK, EU, Canada, Australia, Japan, Korea, Brazil, Argentina & GCC. Official e-Visa portal: <strong>acces-maroc.ma</strong>.</p></div><div class="card" style="margin-bottom:0"><h3>🛃 Customs & FIFA Rules</h3><div class="row"><span>💵 Undeclared Cash Limit:</span><strong>100,000 MAD (~$10,000)</strong></div><div class="row" style="border:none"><span>🚁 Drones Policy:</span><strong>Strictly Prohibited Without Permit</strong></div></div>',
