@@ -1,48 +1,50 @@
-<div id="sec-weather" class="sec" style="display:none">
-<div class="card"><h3>☀️ June–July Climate & Smart Packing</h3><div class="row"><span>🌊 Casa, Rabat, Tangier, Agadir:</span><strong>22°C–27°C (Breezy Evenings)</strong></div><div class="row" style="border:none"><span>🔥 Marrakech & Fez:</span><strong>33°C–39°C (Dry Heat)</strong></div><p class="sm" style="margin-top:8px"><strong>Pack List:</strong> Type C/E European 2-pin plug adapter, light jacket for coastal nights, breathable cotton & sunscreen.</p></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morocco 2030 Ultimate 24-in-1 Insider Book</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+<div class="line"></div>
+<div class="top"><span class="badge">★ MOROCCO 2030 COMPLETE 24-IN-1</span><button type="button" class="pdf" onclick="window.print()">📥 Save PDF</button></div>
+<h1>The Morocco 2030 Insider Book</h1>
+<p class="lead">24 Interactive Guides, Calculators, Darija Audio Cards, Hammam Prices, AI Trip Builder & Matchday Tools.</p>
+<div class="nav">
+<button type="button" class="nb active" id="n-cities" onclick="go('cities')">🏟️ 1. 2030 Cities</button>
+<button type="button" class="nb" id="n-rail" onclick="go('rail')">🚄 2. Rail & FX</button>
+<button type="button" class="nb" id="n-scam" onclick="go('scam')">🛡️ 3. Fair Prices</button>
+<button type="button" class="nb" id="n-darija" onclick="go('darija')">🗣️ 4. Darija Cards</button>
+<button type="button" class="nb" id="n-trips" onclick="go('trips')">🎒 5. 72h Trips</button>
+<button type="button" class="nb" id="n-sos" onclick="go('sos')">🆘 6. SOS & Apps</button>
+<button type="button" class="nb" id="n-culture" onclick="go('culture')">🇲🇦 7. Culture</button>
+<button type="button" class="nb" id="n-sahara" onclick="go('sahara')">🏜️ 8. Sahara</button>
+<button type="button" class="nb" id="n-invest" onclick="go('invest')">💼 9. Invest 2030</button>
+<button type="button" class="nb" id="n-visa" onclick="go('visa')">✈️ 10. Visa/FIFA</button>
+<button type="button" class="nb" id="n-iberia" onclick="go('iberia')">⛴️ 11. Spain/PT</button>
+<button type="button" class="nb" id="n-voice" onclick="go('voice')">🔊 12. Voice Pack</button>
+<button type="button" class="nb" id="n-weather" onclick="go('weather')">☀️ 13. Packing</button>
+<button type="button" class="nb" id="n-spots" onclick="go('spots')">📍 14. Local Gems</button>
+<button type="button" class="nb" id="n-planner" onclick="go('planner')">🧮 15. Trip Calc</button>
+<button type="button" class="nb" id="n-souk" onclick="go('souk')">🤝 16. Haggler</button>
+<button type="button" class="nb" id="n-medcard" onclick="go('medcard')">🩺 17. Med Card</button>
+<button type="button" class="nb" id="n-matchday" onclick="go('matchday')">⚽ 18. Matchday</button>
+<button type="button" class="nb" id="n-hammam" onclick="go('hammam')">🛁 19. Hammam/Tips</button>
+<button type="button" class="nb" id="n-dress" onclick="go('dress')">👗 20. Dress/Friday</button>
+<button type="button" class="nb" id="n-car" onclick="go('car')">🚗 21. Car/Radars</button>
+<button type="button" class="nb" id="n-night" onclick="go('night')">🍷 22. Nightlife</button>
+<button type="button" class="nb" id="n-photo" onclick="go('photo')">📸 23. Photo/Drones</button>
+<button type="button" class="nb" id="n-aitrip" onclick="go('aitrip')">🗺️ 24. AI Builder</button>
 </div>
-<div id="sec-spots" class="sec" style="display:none">
-<div class="card"><h3>📍 Verified Local Gems (Zero Tourist Traps)</h3><p class="sm"><strong>• Casablanca:</strong> Fresh grilled fish at <em>Marché Central</em>, sunset walk at <em>Anfa Park</em> & mint tea at <em>Sqala</em>.</p><p class="sm"><strong>• Tangier:</strong> Panoramic cliffside tea at historic <em>Café Hafa</em> & street pastries at <em>Grand Socco</em>.</p><p class="sm" style="margin:0"><strong>• Marrakech:</strong> Slow-cooked Tanjia near <em>Place des Ferblantiers</em> & quiet courtyard coffee in <em>Mouassine</em>.</p></div>
-</div>
-<div id="sec-planner" class="sec" style="display:none">
-<div class="card"><h3>🧮 Interactive 2030 Trip & Budget Builder</h3>
-<label>Number of Days in Morocco:</label><input type="number" id="p-days" value="7" oninput="buildTrip()" />
-<label>Travel Comfort Style:</label><select id="p-tier" onchange="buildTrip()"><option value="65">🎒 Smart Fan ($65/day — Hostels, Street Food & Trains)</option><option value="130" selected>🏨 Comfort Fan ($130/day — 4★ Hotels, Al Boraq & Dining)</option><option value="300">👑 VIP Royal ($300/day — Luxury Riads, Private Driver & Fine Dining)</option></select>
-<div id="p-res"></div></div>
-</div>
-<div id="sec-souk" class="sec" style="display:none">
-<div class="card"><h3>🤝 Live Souk & Taxi Haggling Calculator</h3>
-<label>Enter Seller's First Asking Price (in MAD):</label><input type="number" id="s-quote" value="600" oninput="calcSouk()" />
-<div id="s-res"></div></div>
-</div>
-<div id="sec-medcard" class="sec" style="display:none">
-<div class="card"><h3>🩺 Custom Bilingual Medical & Allergy Card</h3>
-<label class="sm"><input type="checkbox" id="m-nut" checked onchange="buildMed()"> Peanuts / Tree Nuts Allergy</label>
-<label class="sm"><input type="checkbox" id="m-glu" onchange="buildMed()"> Gluten / Celiac Intolerance</label>
-<label class="sm"><input type="checkbox" id="m-sea" onchange="buildMed()"> Shellfish / Seafood Allergy</label>
-<label class="sm"><input type="checkbox" id="m-dia" onchange="buildMed()"> Diabetic (Requires Sugar/Insulin)</label>
-<div class="fc" id="m-card" style="margin-top:10px"></div></div>
-</div>
-<div id="sec-matchday" class="sec" style="display:none">
-<div class="card"><h3>⚽ FIFA 2030 Matchday Stadium Survival</h3><p class="sm"><strong>• Arrival Rule:</strong> Leave city center <strong>3.5 hours before kickoff</strong> for Grand Stade Hassan II (Benslimane) to clear outer security perimeters smoothly.</p><p class="sm"><strong>• Banned at Gates:</strong> Large backpacks, power banks bigger than a phone, glass/metal bottles, umbrellas & rigid flagpoles.</p><p class="sm" style="margin:0"><strong>• Post-Match Hack:</strong> Wait 25 minutes inside stadium concourse after full-time before boarding RER shuttle trains to avoid peak crowds.</p></div>
-</div>
-<div id="sec-hammam" class="sec" style="display:none">
-<div class="card"><h3>🛁 Hammam, Souvenir & Tipping Guide</h3><div class="row"><span>🧼 Local Neighborhood Hammam:</span><strong>15–25 MAD (+60 MAD Scrub)</strong></div><div class="row"><span>🧖 Luxury Tourist Spa Hammam:</span><strong>350–900 MAD ($35–$90)</strong></div><div class="row"><span>🧴 Pure Cosmetic Argan Oil (100ml):</span><strong>120–180 MAD ($12–$18)</strong></div><div class="row"><span>🥿 Real Leather Babouches:</span><strong>90–160 MAD ($9–$16)</strong></div><div class="row"><span>🍽️ Café / Restaurant Tipping:</span><strong>5–15 MAD (or 10% Fine Dining)</strong></div><div class="row" style="border:none"><span>🧳 Medina Luggage Porter:</span><strong>20–30 MAD Max Fixed</strong></div><div class="tip">💵 <strong>Cash Rule:</strong> Always carry 20 & 50 MAD notes for taxis, souks, parking guards & local hammams.</div></div>
-</div>
-<div id="sec-dress" class="sec" style="display:none">
-<div class="card"><h3>👗 Dress Code, Couples & Friday Rhythm</h3><p class="sm"><strong>• Modern Cities & Stadiums:</strong> Casual Western attire is completely normal in Casablanca, Rabat, Tangier, Agadir & fan zones.</p><p class="sm"><strong>• Historic Medinas:</strong> Covering shoulders and knees shows respect and prevents unwanted attention.</p><p class="sm"><strong>• Friday Prayer (Jumu'ah):</strong> Many small medina shops close <strong>12:30–14:30</strong> on Fridays—ideal time for Royal Friday Couscous.</p><p class="sm" style="margin:0"><strong>• Foreign Unmarried Couples:</strong> Can freely book hotels and Riads together upon presenting valid passports.</p></div>
-</div>
-<div id="sec-car" class="sec" style="display:none">
-<div class="card"><h3>🚗 Car Rental, Police Checkpoints & Tolls</h3><div class="row"><span>🚙 Economy Car Rental:</span><strong>250–350 MAD/day ($25–$35)</strong></div><div class="row"><span>🛣️ Highway Tolls (Cash MAD):</span><strong>Casa➔Kech ~80 MAD | Casa➔Tanger ~145 MAD</strong></div><div class="row" style="border:none"><span>🚨 Speed Limits:</span><strong>60 km/h City | 100 km/h Road | 120 km/h Highway</strong></div><div class="tip">🛑 <strong>Police Checkpoint Rule:</strong> Always come to a complete full stop at "HALTE / GENDARMERIE" signs at city entrances.</div></div>
-</div>
-<div id="sec-night" class="sec" style="display:none">
-<div class="card"><h3>🍷 Nightlife, Rooftops & Alcohol Rules</h3><p class="sm"><strong>• Legal Zones:</strong> Alcohol is served legally in licensed hotels, rooftop lounges, international restaurants & dedicated supermarkets (Carrefour Gourmet).</p><p class="sm"><strong>• Strictly Prohibited:</strong> Drinking in streets, public squares, beaches or inside FIFA 2030 stadiums.</p><p class="sm" style="margin:0"><strong>• Top Nightlife Districts:</strong> Ain Diab & Gauthier (Casablanca), Hivernage & Gueliz (Marrakech), Malabata (Tangier), Agadir Marina.</p></div>
-</div>
-<div id="sec-photo" class="sec" style="display:none">
-<div class="card"><h3>📸 Photography & Drone Customs Laws</h3><p class="sm"><strong>• Drones Strictly Banned:</strong> Unlicensed drones are immediately confiscated at Moroccan airports without prior government permit.</p><p class="sm"><strong>• Restricted Buildings:</strong> Never photograph police officers, military personnel, border posts or Royal Palaces.</p><p class="sm" style="margin:0"><strong>• Souks & Street Performers:</strong> Always ask permission before portraits; Jemaa el-Fna performers expect <strong>10–20 MAD</strong>.</p></div>
-</div>
-<div id="sec-aitrip" class="sec" style="display:none">
-<div class="card"><h3>🗺️ AI Custom 2030 Itinerary Builder</h3><label>Select Arrival City Hub:</label><select id="ai-hub" onchange="genAiRoute()"><option value="casa">Casablanca / Rabat Central Hub</option><option value="tanger">Tangier Northern Gateway</option><option value="kech">Marrakech & South Hub</option></select><label>Trip Duration:</label><select id="ai-dur" onchange="genAiRoute()"><option value="5">5 Days (Express Match & City)</option><option value="7" selected>7 Days (Classic World Cup Loop)</option><option value="10">10 Days (Grand Royal Tour)</option></select><div id="ai-route-out"></div></div>
-</div>
-<div id="sec-iberia" class="sec" style="display:none"><div class="card"><h3>⛴️ Spain & Portugal ➔ Morocco Crossing Guide</h3><div class="row"><span>🚤 Tarifa ➔ Tangier Ville Ferry:</span><strong>35 Minutes (FRS / Intershipping)</strong></div><div class="row"><span>🚢 Algeciras ➔ Tanger Med:</span><strong>1h 30m (24/7 Frequent Ferries)</strong></div><div class="row" style="border:none"><span>✈️ Madrid / Lisbon ➔ Casa/Kech:</span><strong>1h 15m–1h 45m Direct Flights</strong></div><div class="tip">🛂 <strong>Ferry Hack:</strong> Get your passport stamped ON BOARD the ferry during crossing to skip port queues!</div></div></div>
-<div id="sec-voice" class="sec" style="display:none"><div class="card"><h3>🔊 Tap Any Phrase to Play Audio Out Loud</h3><button type="button" class="pdf" style="width:100%;margin-bottom:8px;padding:10px" onclick="speak('السلام عليكم، لاباس؟')">👋 "Salam Alaykum, Labas?" (Hello, how are you?)</button><button type="button" class="pdf" style="width:100%;margin-bottom:8px;padding:10px" onclick="speak('بشحال هادا عافاك؟')">💰 "Bshhal hada afak?" (How much is this please?)</button><button type="button" class="pdf" style="width:100%;margin-bottom:8px;padding:10px" onclick="speak('شكرا بزاف')">🙏 "Shukran Bzzaf!" (Thank you very much!)</button><button type="button" class="pdf" style="width:100%;padding:10px" onclick="speak('فين كاينة محطة القطار؟')">🚄 "Fin kayna mahattat l-qitar?" (Where is the train station?)</button></div></div>
+<div id="sec-cities" class="sec"><label>Select 2030 Host City & Mega-Stadium:</label><select id="csel" onchange="rcity()"><option value="casa">Casablanca / Benslimane — Grand Stade Hassan II (115,000)</option><option value="rabat">Rabat — Prince Moulay Abdellah Stadium (68,700)</option><option value="tanger">Tangier — Ibn Batouta Stadium (68,000)</option><option value="kech">Marrakech — Grand Stade de Marrakech (45,860)</option><option value="fes">Fez — Complexe Sportif de Fès (55,800)</option><option value="agadir">Agadir — Stade Adrar (46,000)</option></select><div class="card" id="ccard"></div></div>
+<div id="sec-rail" class="sec" style="display:none"><div class="card"><h3>🚄 Al Boraq 2030 High-Speed Network</h3><p class="sm">Extended 320 km/h bullet train linking <strong>Tangier • Rabat • Casablanca • Marrakech</strong>, plus rapid shuttles to Benslimane and Agadir.</p><div class="row"><span>Tangier ➔ Casablanca:</span><strong>2h 10m (~$25–$38)</strong></div><div class="row"><span>Casablanca ➔ Marrakech:</span><strong>1h 30m (~$20–$32)</strong></div><div class="row" style="border:none"><span>Rabat ➔ Benslimane Stadium:</span><strong>35m RER Express (~$6)</strong></div></div><div class="card"><h3>💱 Live Fan Currency Converter</h3><label>Enter Amount in Moroccan Dirhams (MAD):</label><input type="number" id="mad" value="500" oninput="cmad()" /><div class="cg"><div class="cb"><span>🇺🇸 USD</span><strong id="vu">$50.0</strong></div><div class="cb"><span>🇪🇺 EUR</span><strong id="ve">€46.0</strong></div><div class="cb"><span>🇬🇧 GBP</span><strong id="vg">£39.0</strong></div></div></div></div>
+<div id="sec-scam" class="sec" style="display:none"><div class="card"><h3>🛡️ Local Fair-Price Shield</h3><div class="row"><span>🚕 Petit Taxi (City):</span><strong>15–35 MAD ($1.5–$3.5)</strong></div><div class="row"><span>✈️ Casa Airport Train:</span><strong>55 MAD ($5.50)</strong></div><div class="row"><span>✈️ Casa Airport Taxi:</span><strong>300 MAD Fixed ($30)</strong></div><div class="row"><span>🥘 Local Tagine:</span><strong>45–80 MAD ($4.5–$8)</strong></div><div class="row" style="border:none"><span>📶 5G eSIM (20GB):</span><strong>100–150 MAD ($10–$15)</strong></div></div><div class="tip">💡 Always ask the Petit Taxi driver to turn on the meter ("Compteur, s'il vous plaît") before moving.</div></div>
+<div id="sec-darija" class="sec" style="display:none"><div class="dg"><button type="button" class="db" onclick="scard('taxi')">🚕 Turn On Meter</button><button type="button" class="db" onclick="scard('stad')">🏟️ To Stadium</button><button type="button" class="db" onclick="scard('price')">💰 Too Expensive</button><button type="button" class="db" onclick="scard('food')">🥜 Food Allergy</button></div><div class="fc"><div class="fe" id="fe">Please turn on the taxi meter.</div><div class="fa" id="fa">عافاك خدام الكونتور</div><div class="fp" id="fp">"Afak khaddem l-compteur"</div><button type="button" class="pdf" onclick="speak(curAr)">🔊 Listen Pronunciation</button></div></div>
+<div id="sec-trips" class="sec" style="display:none"><div class="card"><h3>🏜️ Marrakech ➔ Agafay & Essaouira (72h)</h3><p class="sm">Sunset camel dinner in Agafay Stone Desert (40 min) + CTM bus to Essaouira coastal medina (2h30).</p></div><div class="card"><h3>🔵 Tangier ➔ Chefchaouen & Asilah (72h)</h3><p class="sm">2h to the Blue Pearl Medina of Chefchaouen + 45 min stop in Asilah art town.</p></div><div class="card" style="margin-bottom:0"><h3>🏄 Agadir ➔ Taghazout & Paradise Valley</h3><p class="sm" style="margin:0">25 min north of Agadir: world-famous surf villages & palm canyon pools.</p></div></div>
+<div id="sec-sos" class="sec" style="display:none"><div class="card"><h3>📱 Essential Morocco Apps</h3><div class="row"><span>🚄 ONCF Voyages:</span><strong>Official Train Tickets</strong></div><div class="row"><span>🚕 Careem / InDrive:</span><strong>Safe City Ride-Hailing</strong></div><div class="row" style="border:none"><span>🍔 Glovo:</span><strong>Food & Pharmacy Delivery</strong></div></div><div class="card" style="margin-bottom:0"><h3>🆘 Emergency Numbers (24/7)</h3><div class="row"><span>🚓 Urban Police:</span><strong style="color:#F87171">19</strong></div><div class="row"><span>🚓 Gendarmerie (Highways):</span><strong style="color:#F87171">177</strong></div><div class="row" style="border:none"><span>🚑 Ambulance & Fire:</span><strong style="color:#F87171">15</strong></div></div></div>
+<div id="sec-culture" class="sec" style="display:none"><div class="card"><h3>🥘 Iconic Moroccan Food</h3><p class="sm"><strong>Royal Friday Couscous • Sweet/Savory Pastilla • Rfissa • Tanjia Marrakchia • Mint Tea</strong> (always accept with your right hand).</p></div><div class="card" style="margin-bottom:0"><h3>🕌 Hospitality & Etiquette</h3><p class="sm" style="margin:0">Greet with <em>"Salam Alaykum"</em>. Non-Muslims can tour the magnificent <strong>Hassan II Mosque</strong> in Casablanca.</p></div></div>
+<div id="sec-sahara" class="sec" style="display:none"><div class="card"><h3>🏜️ Moroccan Sahara & Global Recognition</h3><p class="sm">Morocco's Southern Provinces (<strong>Laâyoune & Dakhla</strong>) enjoy growing global recognition following the <strong>December 2020 US Proclamation</strong> and support from over 30 nations with consulates on the ground.</p></div><div class="card" style="margin-bottom:0"><h3>🌊 Dakhla Lagoon & Southern Mega-Projects</h3><p class="sm" style="margin:0">World kitesurfing capital, $1.2B Dakhla Atlantic Port, 1,055 km Tiznit-Dakhla Expressway & 2h daily flights from Casablanca.</p></div></div>
+<div id="sec-invest" class="sec" style="display:none"><div class="card"><h3>💼 Invest in Morocco 2030 ($15B+ Boom)</h3><div class="row"><span>🏢 Real Estate & Rentals:</span><strong>Casa, Rabat, Tangier, Marrakech</strong></div><div class="row"><span>☀️ Green Hydrogen & Solar:</span><strong>Dakhla & Ouarzazate</strong></div><div class="row" style="border:none"><span>💻 Finance & Tech:</span><strong>Casablanca Finance City (CFC)</strong></div></div><div class="card" style="margin-bottom:0"><h3>📜 Investment Charter Incentives</h3><p class="sm" style="margin:0">Up to 30% grants, full profit repatriation & 5-year tax exemptions in key zones. Official portal: <em>morocconow.com</em>.</p></div></div>
+<div id="sec-visa" class="sec" style="display:none"><div class="card"><h3>🛂 Visa-Free Entry & e-Visa</h3><p class="sm"><strong>90-Day Visa-Free:</strong> USA, UK, EU, Canada, Australia, Japan, Korea, Brazil, Argentina & GCC. Official e-Visa portal: <strong>acces-maroc.ma</strong>.</p></div><div class="card" style="margin-bottom:0"><h3>🛃 Customs & FIFA Rules</h3><div class="row"><span>💵 Undeclared Cash Limit:</span><strong>100,000 MAD (~$10,000)</strong></div><div class="row" style="border:none"><span>🚁 Drones Policy:</span><strong>Strictly Prohibited Without Permit</strong></div></div></div>
