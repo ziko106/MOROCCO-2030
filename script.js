@@ -15,7 +15,7 @@ var D = {
 };
 
 var curAr = "عافاك خدام الكونتور";
-var ids = ['cities','rail','scam','darija','trips','sos','culture','sahara','invest','visa','iberia','voice','weather','spots','planner','souk','medcard','matchday','hammam','dress','car','night','photo','aitrip'];
+var ids = "cities,rail,scam,darija,trips,sos,culture,sahara,invest,visa,iberia,voice,weather,spots,planner,souk,medcard,matchday,hammam,dress,car,night,photo,aitrip".split(",");
 
 function go(n) {
   for (var i = 0; i < ids.length; i++) {
@@ -105,7 +105,7 @@ function genAiRoute() {
     tanger: "<strong>Day 1–2:</strong> Ferry/Flight to Tangier, Café Hafa & Match at Ibn Batouta Stadium.<br><strong>Day 3–4:</strong> Day trip to Chefchaouen Blue Pearl Medina (2h) & Asilah art walls.<br><strong>Day 5+:</strong> Al Boraq TGV south to Rabat & Casablanca mega-stadium.",
     kech: "<strong>Day 1–2:</strong> Marrakech Medina, Jemaa el-Fna & Match at Grand Stade de Marrakech.<br><strong>Day 3–4:</strong> Agafay Stone Desert camp & coastal escape to Essaouira (2h30).<br><strong>Day 5+:</strong> Al Boraq train north to Casablanca or flight to Dakhla Lagoon."
   };
-  box.innerHTML = '<div class="card" style="margin-top:10px;margin-bottom:0"><h3>🗺️ Custom ' + d + '-Day Route from ' + hub.options[hub.selectedIndex].text + '</h3><p class="sm">' + routes[h] + '</p><div class="tip">🚄 <strong>Transport Tip:</strong> Use ONCF Al Boraq Rail Pass for seamless city-to-stadium connections.</div></div>';
+  box.innerHTML = '<div class="card" style="margin-top:10px;margin-bottom:0"><h3>🗺️ Custom ' + d + '-Day Route from ' + hub.options.item(hub.selectedIndex).text + '</h3><p class="sm">' + routes[h] + '</p><div class="tip">🚄 <strong>Transport Tip:</strong> Use ONCF Al Boraq Rail Pass for seamless city-to-stadium connections.</div></div>';
 }
 
 rcity(); cmad(); buildTrip(); calcSouk(); buildMed(); genAiRoute();
