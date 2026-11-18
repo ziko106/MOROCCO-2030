@@ -15,7 +15,7 @@ var D = {
 };
 
 var curAr = "عافاك خدام الكونتور";
-var ids = "cities,rail,scam,darija,trips,sos,culture,sahara,invest,visa,iberia,voice,weather,spots,planner,souk,medcard,matchday,hammam,dress,car,night,photo,aitrip".split(",");
+var ids = "cities,rail,scam,darija,trips,sos,culture,sahara,invest,visa,iberia,voice,weather,spots,planner,souk,medcard,matchday".split(",");
 
 function go(n) {
   for (var i = 0; i < ids.length; i++) {
@@ -85,16 +85,4 @@ function buildMed() {
   c.innerHTML = '<div class="fe">MEDICAL ALERT / تنبيه طبي</div><div class="fa" style="font-size:18px">' + txt + '</div><div class="fp">Call Emergency: 15 (Ambulance) • 19 (Police)</div>';
 }
 
-function genAiRoute() {
-  var hub = document.getElementById('ai-hub'), dur = document.getElementById('ai-dur'), box = document.getElementById('ai-route-out');
-  if (!hub || !dur || !box) return;
-  var h = hub.value, d = dur.value;
-  var r = {
-    casa: "<strong>Day 1–2:</strong> Arrive Casablanca (CMN), Hassan II Mosque & Match at Grand Stade Hassan II.<br><strong>Day 3–4:</strong> Al Boraq TGV to Rabat (45m) — Oudayas & Moulay Abdellah Stadium.<br><strong>Day 5+:</strong> High-speed train to Marrakech & Agafay Desert dinner.",
-    tanger: "<strong>Day 1–2:</strong> Ferry/Flight to Tangier, Café Hafa & Match at Ibn Batouta Stadium.<br><strong>Day 3–4:</strong> Day trip to Chefchaouen Blue Pearl (2h) & Asilah.<br><strong>Day 5+:</strong> Al Boraq TGV south to Rabat & Casablanca.",
-    kech: "<strong>Day 1–2:</strong> Marrakech Medina, Jemaa el-Fna & Match at Grand Stade de Marrakech.<br><strong>Day 3–4:</strong> Agafay Stone Desert & Essaouira coast (2h30).<br><strong>Day 5+:</strong> Al Boraq train north to Casablanca or flight to Dakhla."
-  };
-  box.innerHTML = '<div class="card" style="margin-top:10px;margin-bottom:0"><h3>🗺️ Custom ' + d + '-Day Route from ' + hub.options.item(hub.selectedIndex).text + '</h3><p class="sm">' + Reflect.get(r, h) + '</p><div class="tip">🚄 <strong>Transport Tip:</strong> Use ONCF Al Boraq Rail Pass for city-to-stadium connections.</div></div>';
-}
-
-rcity(); cmad(); buildTrip(); calcSouk(); buildMed(); genAiRoute();
+rcity(); cmad(); buildTrip(); calcSouk(); buildMed();
