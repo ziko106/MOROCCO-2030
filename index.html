@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Morocco 2030 Ultimate 18-in-1 Insider Book</title>
+<title>Morocco 2030 Ultimate 24-in-1 Insider Book</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="app">
 <div class="line"></div>
-<div class="top"><span class="badge">★ MOROCCO 2030 COMPLETE 18-IN-1</span><button type="button" class="pdf" onclick="window.print()">📥 Save PDF</button></div>
+<div class="top"><span class="badge">★ MOROCCO 2030 COMPLETE 24-IN-1</span><button type="button" class="pdf" onclick="window.print()">📥 Save PDF</button></div>
 <h1>The Morocco 2030 Insider Book</h1>
-<p class="lead">18 Interactive Guides, Calculators, Darija Audio Cards, Iberia Crossing & Matchday Tools.</p>
+<p class="lead">24 Interactive Guides, Calculators, Darija Audio Cards, Hammam Prices, AI Trip Builder & Matchday Tools.</p>
 <div class="nav">
 <button type="button" class="nb active" id="n-cities" onclick="go('cities')">🏟️ 1. 2030 Cities</button>
 <button type="button" class="nb" id="n-rail" onclick="go('rail')">🚄 2. Rail & FX</button>
@@ -31,6 +31,12 @@
 <button type="button" class="nb" id="n-souk" onclick="go('souk')">🤝 16. Haggler</button>
 <button type="button" class="nb" id="n-medcard" onclick="go('medcard')">🩺 17. Med Card</button>
 <button type="button" class="nb" id="n-matchday" onclick="go('matchday')">⚽ 18. Matchday</button>
+<button type="button" class="nb" id="n-hammam" onclick="go('hammam')">🛁 19. Hammam/Tips</button>
+<button type="button" class="nb" id="n-dress" onclick="go('dress')">👗 20. Dress/Friday</button>
+<button type="button" class="nb" id="n-car" onclick="go('car')">🚗 21. Car/Radars</button>
+<button type="button" class="nb" id="n-night" onclick="go('night')">🍷 22. Nightlife</button>
+<button type="button" class="nb" id="n-photo" onclick="go('photo')">📸 23. Photo/Drones</button>
+<button type="button" class="nb" id="n-aitrip" onclick="go('aitrip')">🗺️ 24. AI Builder</button>
 </div>
 <div id="sec-cities" class="sec">
 <label>Select 2030 Host City & Mega-Stadium:</label>
@@ -82,16 +88,6 @@
 <div class="card" style="margin-bottom:0"><h3>🛃 Customs & FIFA Rules</h3><div class="row"><span>💵 Undeclared Cash Limit:</span><strong>100,000 MAD (~$10,000)</strong></div><div class="row" style="border:none"><span>🚁 Drones Policy:</span><strong>Strictly Prohibited Without Permit</strong></div></div>
 </div>
 <div id="sec-iberia" class="sec" style="display:none">
-<div class="card"><h3>⛴️ Spain & Portugal ➔ Morocco Crossing Guide</h3><div class="row"><span>🚤 Tarifa ➔ Tangier Ville Ferry:</span><strong>35 Minutes (FRS / Intershipping)</strong></div><div class="row"><span>🚢 Algeciras ➔ Tanger Med:</span><strong>1h 30m (24/7 Frequent Ferries)</strong></div><div class="row" style="border:none"><span>✈️ Madrid / Lisbon ➔ Casa/Kech:</span><strong>1h 15m–1h 45m Direct Flights</strong></div><div class="tip">🛂 <strong>Ferry Hack:</strong> Get your passport stamped ON BOARD the ferry during crossing to skip port queues!</div></div>
-</div>
-<div id="sec-voice" class="sec" style="display:none">
-<div class="card"><h3>🔊 Tap Any Phrase to Play Audio Out Loud</h3>
-<button type="button" class="pdf" style="width:100%;margin-bottom:8px;padding:10px" onclick="speak('السلام عليكم، لاباس؟')">👋 "Salam Alaykum, Labas?" (Hello, how are you?)</button>
-<button type="button" class="pdf" style="width:100%;margin-bottom:8px;padding:10px" onclick="speak('بشحال هادا عافاك؟')">💰 "Bshhal hada afak?" (How much is this please?)</button>
-<button type="button" class="pdf" style="width:100%;margin-bottom:8px;padding:10px" onclick="speak('شكرا بزاف')">🙏 "Shukran Bzzaf!" (Thank you very much!)</button>
-<button type="button" class="pdf" style="width:100%;padding:10px" onclick="speak('فين كاينة محطة القطار؟')">🚄 "Fin kayna mahattat l-qitar?" (Where is the train station?)</button>
-</div>
-</div>
 <div id="sec-weather" class="sec" style="display:none">
 <div class="card"><h3>☀️ June–July Climate & Smart Packing</h3><div class="row"><span>🌊 Casa, Rabat, Tangier, Agadir:</span><strong>22°C–27°C (Breezy Evenings)</strong></div><div class="row" style="border:none"><span>🔥 Marrakech & Fez:</span><strong>33°C–39°C (Dry Heat)</strong></div><p class="sm" style="margin-top:8px"><strong>Pack List:</strong> Type C/E European 2-pin plug adapter, light jacket for coastal nights, breathable cotton & sunscreen.</p></div>
 </div>
@@ -119,6 +115,24 @@
 </div>
 <div id="sec-matchday" class="sec" style="display:none">
 <div class="card"><h3>⚽ FIFA 2030 Matchday Stadium Survival</h3><p class="sm"><strong>• Arrival Rule:</strong> Leave city center <strong>3.5 hours before kickoff</strong> for Grand Stade Hassan II (Benslimane) to clear outer security perimeters smoothly.</p><p class="sm"><strong>• Banned at Gates:</strong> Large backpacks, power banks bigger than a phone, glass/metal bottles, umbrellas & rigid flagpoles.</p><p class="sm" style="margin:0"><strong>• Post-Match Hack:</strong> Wait 25 minutes inside stadium concourse after full-time before boarding RER shuttle trains to avoid peak crowds.</p></div>
+</div>
+<div id="sec-hammam" class="sec" style="display:none">
+<div class="card"><h3>🛁 Hammam, Souvenir & Tipping Guide</h3><div class="row"><span>🧼 Local Neighborhood Hammam:</span><strong>15–25 MAD (+60 MAD Scrub)</strong></div><div class="row"><span>🧖 Luxury Tourist Spa Hammam:</span><strong>350–900 MAD ($35–$90)</strong></div><div class="row"><span>🧴 Pure Cosmetic Argan Oil (100ml):</span><strong>120–180 MAD ($12–$18)</strong></div><div class="row"><span>🥿 Real Leather Babouches:</span><strong>90–160 MAD ($9–$16)</strong></div><div class="row"><span>🍽️ Café / Restaurant Tipping:</span><strong>5–15 MAD (or 10% Fine Dining)</strong></div><div class="row" style="border:none"><span>🧳 Medina Luggage Porter:</span><strong>20–30 MAD Max Fixed</strong></div><div class="tip">💵 <strong>Cash Rule:</strong> Always carry 20 & 50 MAD notes for taxis, souks, parking guards & local hammams.</div></div>
+</div>
+<div id="sec-dress" class="sec" style="display:none">
+<div class="card"><h3>👗 Dress Code, Couples & Friday Rhythm</h3><p class="sm"><strong>• Modern Cities & Stadiums:</strong> Casual Western attire is completely normal in Casablanca, Rabat, Tangier, Agadir & fan zones.</p><p class="sm"><strong>• Historic Medinas:</strong> Covering shoulders and knees shows respect and prevents unwanted attention.</p><p class="sm"><strong>• Friday Prayer (Jumu'ah):</strong> Many small medina shops close <strong>12:30–14:30</strong> on Fridays—ideal time for Royal Friday Couscous.</p><p class="sm" style="margin:0"><strong>• Foreign Unmarried Couples:</strong> Can freely book hotels and Riads together upon presenting valid passports.</p></div>
+</div>
+<div id="sec-car" class="sec" style="display:none">
+<div class="card"><h3>🚗 Car Rental, Police Checkpoints & Tolls</h3><div class="row"><span>🚙 Economy Car Rental:</span><strong>250–350 MAD/day ($25–$35)</strong></div><div class="row"><span>🛣️ Highway Tolls (Cash MAD):</span><strong>Casa➔Kech ~80 MAD | Casa➔Tanger ~145 MAD</strong></div><div class="row" style="border:none"><span>🚨 Speed Limits:</span><strong>60 km/h City | 100 km/h Road | 120 km/h Highway</strong></div><div class="tip">🛑 <strong>Police Checkpoint Rule:</strong> Always come to a complete full stop at "HALTE / GENDARMERIE" signs at city entrances.</div></div>
+</div>
+<div id="sec-night" class="sec" style="display:none">
+<div class="card"><h3>🍷 Nightlife, Rooftops & Alcohol Rules</h3><p class="sm"><strong>• Legal Zones:</strong> Alcohol is served legally in licensed hotels, rooftop lounges, international restaurants & dedicated supermarkets (Carrefour Gourmet).</p><p class="sm"><strong>• Strictly Prohibited:</strong> Drinking in streets, public squares, beaches or inside FIFA 2030 stadiums.</p><p class="sm" style="margin:0"><strong>• Top Nightlife Districts:</strong> Ain Diab & Gauthier (Casablanca), Hivernage & Gueliz (Marrakech), Malabata (Tangier), Agadir Marina.</p></div>
+</div>
+<div id="sec-photo" class="sec" style="display:none">
+<div class="card"><h3>📸 Photography & Drone Customs Laws</h3><p class="sm"><strong>• Drones Strictly Banned:</strong> Unlicensed drones are immediately confiscated at Moroccan airports without prior government permit.</p><p class="sm"><strong>• Restricted Buildings:</strong> Never photograph police officers, military personnel, border posts or Royal Palaces.</p><p class="sm" style="margin:0"><strong>• Souks & Street Performers:</strong> Always ask permission before portraits; Jemaa el-Fna performers expect <strong>10–20 MAD</strong>.</p></div>
+</div>
+<div id="sec-aitrip" class="sec" style="display:none">
+<div class="card"><h3>🗺️ AI Custom 2030 Itinerary Builder</h3><label>Select Arrival City Hub:</label><select id="ai-hub" onchange="genAiRoute()"><option value="casa">Casablanca / Rabat Central Hub</option><option value="tanger">Tangier Northern Gateway</option><option value="kech">Marrakech & South Hub</option></select><label>Trip Duration:</label><select id="ai-dur" onchange="genAiRoute()"><option value="5">5 Days (Express Match & City)</option><option value="7" selected>7 Days (Classic World Cup Loop)</option><option value="10">10 Days (Grand Royal Tour)</option></select><div id="ai-route-out"></div></div>
 </div>
 <div class="line" style="margin-top:14px;margin-bottom:0"></div>
 </div>
