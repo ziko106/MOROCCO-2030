@@ -130,4 +130,15 @@ function genAiRoute() {
   };
   box.innerHTML = '<div class="card" style="margin-top:10px;margin-bottom:0"><h3>🗺️ Custom ' + d + '-Day Route from ' + hub.options.item(hub.selectedIndex).text + '</h3><p class="sm">' + Reflect.get(r, h) + '</p><div class="tip">🚄 <strong>Transport Tip:</strong> Use ONCF Al Boraq Rail Pass for city-to-stadium connections.</div></div>';
 }
+var appBox = document.querySelector('.app');
+var endLine = document.querySelector('.app .line:last-of-type');
+if (appBox && endLine && !document.getElementById('sec-iberia')) {
+  var d11 = document.createElement('div'); d11.id = 'sec-iberia'; d11.className = 'sec'; d11.style.display = 'none';
+  d11.innerHTML = '<div class="card"><h3>🤖 Morocco 2030 AI Local Concierge</h3><p class="sm">Tap any instant topic below:</p><div class="dg"><button type="button" class="db" onclick="askAi(\'stad\')">🏟️ Stadium Access</button><button type="button" class="db" onclick="askAi(\'food\')">🥘 Best Local Food</button><button type="button" class="db" onclick="askAi(\'sim\')">📶 5G SIM & Wi-Fi</button><button type="button" class="db" onclick="askAi(\'bud\')">💰 5-Day Budget</button></div><div class="tip" id="ai-ans" style="margin-top:8px">Tap a topic above for an instant local insider answer.</div></div>';
+  var d12 = document.createElement('div'); d12.id = 'sec-voice'; d12.className = 'sec'; d12.style.display = 'none';
+  d12.innerHTML = '<div class="card"><h3>⚖️ Group Bill & Tipping Splitter (MAD / USD / EUR)</h3><label>Total Bill Amount (in MAD):</label><input type="number" id="sb-tot" value="400" oninput="calcSplit()" /><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><div><label>Number of People:</label><input type="number" id="sb-ppl" value="4" min="1" oninput="calcSplit()" /></div><div><label>Tipping Level:</label><select id="sb-tip" onchange="calcSplit()"><option value="0">0% (No Tip)</option><option value="5">5% (Local Café)</option><option value="10" selected>10% (Restaurant)</option></select></div></div><div id="sb-res" style="margin-top:8px"></div></div>';
+  appBox.insertBefore(d11, endLine);
+  appBox.insertBefore(d12, endLine);
+  calcSplit();
+}
 
