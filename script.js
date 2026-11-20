@@ -59,6 +59,40 @@ function speak(t) {
   }
 }
 
+function askAi(k) {
+  var a = {
+    stad: "<strong>🏟️ Stadium Access:</strong> Take the ONCF RER Express train from Casa-Port or Rabat directly to Grand Stade Hassan II (Benslimane) 3.5h before kickoff. Wait 25 min inside after full-time to skip crowds.",
+    food: "<strong>🥘 Best Local Food:</strong> In Casablanca, eat fresh grilled fish at Marché Central. In Marrakech, try slow-cooked Tanjia near Place des Ferblantiers. On Fridays, order Royal Couscous (50–80 MAD).",
+    sim: "<strong>📶 5G SIM & Wi-Fi:</strong> Grab a Maroc Telecom (IAM) or Orange SIM at the airport (~130 MAD for 20GB) or activate an Airalo eSIM before flying so you can order Careem/InDrive immediately.",
+    bud: "<strong>💰 5-Day Budget Guide:</strong> Smart Fan (~$325 total for hostels, street food & trains), Comfort Fan (~$650 total for 4★ hotels & Al Boraq TGV), VIP Royal (~$1,500+ with private driver)."
+  };
+  var el = document.getElementById('ai-ans');
+  if (el) el.innerHTML = Reflect.get(a, k);
+}
+
+function askAiFree() {
+  var q = (document.getElementById('ai-q').value || '').toLowerCase();
+  if (q.indexOf('food') > -1 || q.indexOf('eat') > -1 || q.indexOf('rest') > -1 || q.indexOf('casa') > -1) return askAi('food');
+  if (q.indexOf('stad') > -1 || q.indexOf('train') > -1 || q.indexOf('rabat') > -1 || q.indexOf('match') > -1) return askAi('stad');
+  if (q.indexOf('sim') > -1 || q.indexOf('wifi') > -1 || q.indexOf('net') > -1 || q.indexOf('5g') > -1) return askAi('sim');
+  if (q.indexOf('bud') > -1 || q.indexOf('cost') > -1 || q.indexOf('price') > -1 || q.indexOf('day') > -1) return askAi('bud');
+  var el = document.getElementById('ai-ans');
+  if (el) el.innerHTML = "<strong>🤖 AI Tip:</strong> Use Al Boraq TGV between cities, always insist on the Petit Taxi meter ('Compteur'), and carry 20 & 50 MAD notes for local tips.";
+}
+
+function calcSplit() {
+  var totEl = document.getElementById('sb-tot'), pplEl = document.getElementById('sb-ppl'), tipEl = document.getElementById('sb-tip'), res = document.getElementById('sb-res');
+  if (!totEl || !pplEl || !tipEl || !res) return;
+  var tot = parseFloat(totEl.value) || 0;
+  var ppl = Math.max(parseInt(pplEl.value) || 1, 1);
+  var tip = parseFloat(tipEl.value) || 0;
+  var grand = tot * (1 + tip / 100);
+  var perMad = grand / ppl;
+  res.innerHTML =
+    '<div class="row"><span>🧾 Total With Tip (' + tip + '%):</span><strong>' + Math.round(grand) + ' MAD</strong></div>' +
+    '<div class="row" style="border:none"><span>👤 Each Person Pays:</span><strong style="color:#34D399">' + perMad.toFixed(1) + ' MAD ($' + (perMad * 0.10).toFixed(2) + ' / €' + (perMad * 0.092).toFixed(2) + ')</strong></div>';
+}
+
 function buildTrip() {
   var dE = document.getElementById('p-days'), rE = document.getElementById('p-tier'), res = document.getElementById('p-res');
   if (!rE || !res) return;
@@ -97,4 +131,3 @@ function genAiRoute() {
   box.innerHTML = '<div class="card" style="margin-top:10px;margin-bottom:0"><h3>🗺️ Custom ' + d + '-Day Route from ' + hub.options.item(hub.selectedIndex).text + '</h3><p class="sm">' + Reflect.get(r, h) + '</p><div class="tip">🚄 <strong>Transport Tip:</strong> Use ONCF Al Boraq Rail Pass for city-to-stadium connections.</div></div>';
 }
 
-rcity(); cmad(); buildTrip(); calcSouk(); buildMed(); genAiRoute();
