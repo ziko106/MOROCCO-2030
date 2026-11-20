@@ -18,11 +18,16 @@ var curAr = "عافاك خدام الكونتور";
 var ids = "cities,rail,scam,darija,trips,sos,culture,sahara,invest,visa,iberia,voice,weather,spots,planner,souk,medcard,matchday,hammam,dress,car,night,photo,aitrip".split(",");
 
 function go(n) {
+  var app = document.querySelector('.app');
+  var line = document.querySelector('.app > .line:last-child') || app.lastElementChild;
   for (var i = 0; i < ids.length; i++) {
     var id = ids.at(i);
     var s = document.getElementById('sec-' + id);
     var b = document.getElementById('n-' + id);
-    if (s) s.style.display = id === n ? 'block' : 'none';
+    if (s) {
+      if (s.parentNode !== app && app && line) app.insertBefore(s, line);
+      s.style.display = id === n ? 'block' : 'none';
+    }
     if (b) b.className = id === n ? 'nb active' : 'nb';
   }
 }
@@ -68,16 +73,6 @@ function askAi(k) {
   };
   var el = document.getElementById('ai-ans');
   if (el) el.innerHTML = Reflect.get(a, k);
-}
-
-function askAiFree() {
-  var q = (document.getElementById('ai-q').value || '').toLowerCase();
-  if (q.indexOf('food') > -1 || q.indexOf('eat') > -1 || q.indexOf('rest') > -1 || q.indexOf('casa') > -1) return askAi('food');
-  if (q.indexOf('stad') > -1 || q.indexOf('train') > -1 || q.indexOf('rabat') > -1 || q.indexOf('match') > -1) return askAi('stad');
-  if (q.indexOf('sim') > -1 || q.indexOf('wifi') > -1 || q.indexOf('net') > -1 || q.indexOf('5g') > -1) return askAi('sim');
-  if (q.indexOf('bud') > -1 || q.indexOf('cost') > -1 || q.indexOf('price') > -1 || q.indexOf('day') > -1) return askAi('bud');
-  var el = document.getElementById('ai-ans');
-  if (el) el.innerHTML = "<strong>🤖 AI Tip:</strong> Use Al Boraq TGV between cities, always insist on the Petit Taxi meter ('Compteur'), and carry 20 & 50 MAD notes for local tips.";
 }
 
 function calcSplit() {
@@ -130,14 +125,5 @@ function genAiRoute() {
   };
   box.innerHTML = '<div class="card" style="margin-top:10px;margin-bottom:0"><h3>🗺️ Custom ' + d + '-Day Route from ' + hub.options.item(hub.selectedIndex).text + '</h3><p class="sm">' + Reflect.get(r, h) + '</p><div class="tip">🚄 <strong>Transport Tip:</strong> Use ONCF Al Boraq Rail Pass for city-to-stadium connections.</div></div>';
 }
-var appBox = document.querySelector('.app');
-var endLine = document.querySelector('.app .line:last-of-type');
-if (appBox && endLine && !document.getElementById('sec-iberia')) {
-var b11 = document.getElementById('sec-iberia');
-if (b11) b11.innerHTML = '<div class="card"><h3>🤖 Morocco 2030 AI Local Concierge</h3><p class="sm">Tap any instant topic below:</p><div class="dg"><button type="button" class="db" onclick="askAi(\'stad\')">🏟️ Stadium Access</button><button type="button" class="db" onclick="askAi(\'food\')">🥘 Best Local Food</button><button type="button" class="db" onclick="askAi(\'sim\')">📶 5G SIM & Wi-Fi</button><button type="button" class="db" onclick="askAi(\'bud\')">💰 5-Day Budget</button></div><div class="tip" id="ai-ans" style="margin-top:8px">Tap a topic above for an instant local insider answer.</div></div>';
-var b12 = document.getElementById('sec-voice');
-if (b12) b12.innerHTML = '<div class="card"><h3>⚖️ Group Bill & Tipping Splitter (MAD / USD / EUR)</h3><label>Total Bill Amount (in MAD):</label><input type="number" id="sb-tot" value="400" oninput="calcSplit()" /><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><div><label>Number of People:</label><input type="number" id="sb-ppl" value="4" min="1" oninput="calcSplit()" /></div><div><label>Tipping Level:</label><select id="sb-tip" onchange="calcSplit()"><option value="0">0% (No Tip)</option><option value="5">5% (Local Café)</option><option value="10" selected>10% (Restaurant)</option></select></div></div><div id="sb-res" style="margin-top:8px"></div></div>';
-calcSplit();
-  
-}
 
+rcity(); cmad(); calcSplit(); buildTrip(); calcSouk(); buildMed(); genAiRoute();
