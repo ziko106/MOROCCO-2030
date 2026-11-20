@@ -20,17 +20,34 @@ var ids = "cities,rail,scam,darija,trips,sos,culture,sahara,invest,visa,iberia,v
 function go(n) {
   var app = document.querySelector('.app');
   var line = document.querySelector('.app > .line:last-child') || app.lastElementChild;
+  if (n === 'iberia' && !document.getElementById('box-11')) {
+    var d11 = document.createElement('div'); d11.id = 'box-11'; d11.className = 'sec';
+    d11.innerHTML = '<div class="card"><h3>🤖 Morocco 2030 AI Local Concierge</h3><p class="sm">Tap any instant topic below:</p><div class="dg"><button type="button" class="db" onclick="askAi(\'stad\')">🏟️ Stadium Access</button><button type="button" class="db" onclick="askAi(\'food\')">🥘 Best Local Food</button><button type="button" class="db" onclick="askAi(\'sim\')">📶 5G SIM & Wi-Fi</button><button type="button" class="db" onclick="askAi(\'bud\')">💰 5-Day Budget</button></div><div class="tip" id="ai-ans" style="margin-top:8px">Tap a topic above for an instant local insider answer.</div></div>';
+    app.insertBefore(d11, line);
+  }
+  if (n === 'voice' && !document.getElementById('box-12')) {
+    var d12 = document.createElement('div'); d12.id = 'box-12'; d12.className = 'sec';
+    d12.innerHTML = '<div class="card"><h3>⚖️ Group Bill & Tipping Splitter (MAD / USD / EUR)</h3><label>Total Bill Amount (in MAD):</label><input type="number" id="sb-tot" value="400" oninput="calcSplit()" /><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><div><label>Number of People:</label><input type="number" id="sb-ppl" value="4" min="1" oninput="calcSplit()" /></div><div><label>Tipping Level:</label><select id="sb-tip" onchange="calcSplit()"><option value="0">0% (No Tip)</option><option value="5">5% (Local Café)</option><option value="10" selected>10% (Restaurant)</option></select></div></div><div id="sb-res" style="margin-top:8px"></div></div>';
+    app.insertBefore(d12, line);
+    calcSplit();
+  }
+  var b11 = document.getElementById('box-11'), b12 = document.getElementById('box-12');
+  if (b11) b11.style.display = n === 'iberia' ? 'block' : 'none';
+  if (b12) b12.style.display = n === 'voice' ? 'block' : 'none';
   for (var i = 0; i < ids.length; i++) {
     var id = ids.at(i);
     var s = document.getElementById('sec-' + id);
     var b = document.getElementById('n-' + id);
-    if (s) {
+    if (s && id !== 'iberia' && id !== 'voice') {
       if (s.parentNode !== app && app && line) app.insertBefore(s, line);
       s.style.display = id === n ? 'block' : 'none';
+    } else if (s) {
+      s.style.display = 'none';
     }
     if (b) b.className = id === n ? 'nb active' : 'nb';
   }
 }
+
 
 function rcity() {
   var s = document.getElementById('csel'), b = document.getElementById('ccard');
