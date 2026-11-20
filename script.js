@@ -144,3 +144,10 @@ function genAiRoute() {
 }
 
 rcity(); cmad(); calcSplit(); buildTrip(); calcSouk(); buildMed(); genAiRoute();
+var s3 = document.querySelector('#sec-scam .card');
+if (s3) s3.innerHTML += '<div class="row" style="border-top:1px solid rgba(255,255,255,.1);margin-top:6px;padding-top:6px"><span>🏧 Best ATM Rule:</span><strong>Select "Charge in MAD" (Avoid 8% FX fee)</strong></div>';
+var s6 = document.querySelector('#sec-sos .card:last-child');
+if (s6) s6.innerHTML += '<div class="row" style="border-top:1px solid rgba(255,255,255,.1);margin-top:6px;padding-top:6px"><span>💊 24/7 Pharmacy & Water:</span><strong>Green Cross • Sealed Bottled Water Only</strong></div>';
+var s18 = document.querySelector('#sec-matchday .card');
+if (s18) s18.innerHTML += '<p class="sm" style="margin-top:8px"><strong>• Spain/Portugal Ferry Hack:</strong> Tarifa ➔ Tangier Ville takes <strong>35 min</strong>; stamp passport ON BOARD the ferry to skip port lines.</p>';
+
